@@ -1,0 +1,61 @@
+body{
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	padding:0;
+	overflow: hidden;
+}
+
+.joystick{
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	padding:0;
+	text-align: center;
+	height:10em;
+	border: 1px solid black;
+	display:none;
+}
+
+.joystick img{
+	max-width:5em;
+	margin-top: 2.4em;
+}
+.joysick-dot{
+	/*position: absolute;*/
+}
+
+
+.joysick-location{
+	position:absolute;
+	bottom:0;
+	font-size: 1em;
+	width:100%;
+}
+
+.device-list{
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	top:0;
+	background-color: pink;
+	padding:1em;
+	
+}
+
+.device-list ul{
+	list-style-type: none;
+	
+	font-size:1.4em;
+	padding:1em;
+}
+
+.device-list li{
+	background-color: #ff4235;
+	padding: 0.5em;
+	margin:0.5em;
+}
