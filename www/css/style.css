@@ -1,61 +1,119 @@
-body{
-	position:absolute;
-	top:0;
-	bottom:0;
-	left:0;
-	right:0;
-	padding:0;
+@-webkit-keyframes animate_heartbeet {
+0% { -webkit-transform: scale(1, 1); }
+20% { -webkit-transform: scale(1, 1); }
+30% { -webkit-transform: scale(0.97, 0.97); }
+40% { -webkit-transform: scale(1, 1); }
+50% { -webkit-transform: scale(1.1, 1.1); }
+60% { -webkit-transform: scale(0.97, 0.97); }
+70% { -webkit-transform: scale(1.1, 1.1); }
+100% { -webkit-transform: scale(1, 1); }
+}
+
+@-webkit-keyframes animate_roleing {
+0% { -webkit-transform: rotate(1deg); }
+50% { -webkit-transform: rotate(180deg); }
+100% { -webkit-transform: rotate(360deg); }
+}
+
+.roling {
+	-webkit-animation-name: animate_roleing;
+	-webkit-animation-duration: 10s;
+	-webkit-transform-origin: 50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+.heartbeet {
+	-webkit-animation-name: animate_heartbeet;
+	-webkit-animation-duration: 2s;
+	-webkit-transform-origin: 50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
+body {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 0;
 	overflow: hidden;
+	background-image: url(../img/robert.png);
 }
 
-.joystick{
-	position:absolute;
-	bottom:0;
-	left:0;
-	right:0;
-	padding:0;
+.face {
+	position: absolute;
+	top: 4em;
+	left: 0;
+	right: 0;
 	text-align: center;
-	height:10em;
-	border: 1px solid black;
-	display:none;
 }
 
-.joystick img{
-	max-width:5em;
+.face i{
+	position: absolute;
+	top: -0.3em;
+	left: 0;
+	right: 0;
+	font-size: 12em;
+	opacity: 0.6;
+	color: #ff4235;
+}
+
+.face img {
+	max-height: 5em;
+}
+
+.joystick {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 0;
+	text-align: center;
+	height: 10em;
+	border: 1px solid black;
+	display: none;
+}
+
+.joystick img {
+	max-width: 5em;
 	margin-top: 2.4em;
 }
-.joysick-dot{
+.joysick-dot {
 	/*position: absolute;*/
 }
 
-
-.joysick-location{
-	position:absolute;
-	bottom:0;
+.joysick-location {
+	position: absolute;
+	bottom: 0;
 	font-size: 1em;
-	width:100%;
+	width: 100%;
 }
 
-.device-list{
-	position:absolute;
-	bottom:0;
-	left:0;
-	right:0;
-	top:0;
+.device-list {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
 	background-color: pink;
-	padding:1em;
-	
+	padding: 1em;
 }
 
-.device-list ul{
+.device-list ul {
 	list-style-type: none;
-	
-	font-size:1.4em;
-	padding:1em;
+	font-size: 1.4em;
+	padding: 1em;
 }
 
-.device-list li{
+.device-list li {
 	background-color: #ff4235;
 	padding: 0.5em;
-	margin:0.5em;
+	margin: 0.5em;
+}
+
+.log {
+
+	background-color: pink;
 }

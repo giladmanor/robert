@@ -6,6 +6,7 @@
 		<title></title>
 
 		<link href="css/style.css" rel="stylesheet">
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
 
 		<!-- IF using Sass (run gulp sass first), then remove the CSS include above
 		<link href="css/ionic.app.css" rel="stylesheet">
@@ -20,17 +21,36 @@
 	</head>
 
 	<body >
-		<h1>Oh Robert dear</h1>
-
+		
+		
+		
+		
 		<div class="device-list">
 			<h1>Whare is Robert?</h1>
 			<ul>
-				
+
 			</ul>
+			<button onclick="app.setDebug()">
+				debug
+			</button>
+
 		</div>
 		
+		<div class="face">
+			<i class="fa fa-refresh roling"></i>
+			<img src="img/icon.png"  class="heartbeet"/>
+		</div>
+		
+		<ul class="log">
+			<li>
+				start
+			</li>
+		</ul>
+
 		<div class="joystick" ontouchstart="app.joysickStart(event);" ontouchmove="app.joysickMove(event);" ontouchend="app.joysickEnd(event);">
-			<div class="joysick-location">--</div>
+			<div class="joysick-location">
+				--
+			</div>
 			<img class="joysick-dot" src="img/dot.png" />
 		</div>
 
