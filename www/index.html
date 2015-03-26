@@ -17,30 +17,20 @@
 		<script src="cordova.js"></script>
 
 		<!-- your app's js -->
+		<script src="js/bt_wrapper.js"></script>
 		<script src="js/app.js"></script>
+		<script src="js/checkbox.js"></script>
+		<script src="js/d3.js"></script>
+
 	</head>
 
 	<body >
-		
-		
-		
-		
-		<div class="device-list">
-			<h1>Whare is Robert?</h1>
-			<ul>
 
-			</ul>
-			<button onclick="app.setDebug()">
-				debug
-			</button>
-
-		</div>
-		
 		<div class="face">
 			<i class="fa fa-refresh roling"></i>
 			<img src="img/icon.png"  class="heartbeet"/>
 		</div>
-		
+
 		<ul class="log">
 			<li>
 				start
@@ -51,7 +41,35 @@
 			<div class="joysick-location">
 				--
 			</div>
-			<img class="joysick-dot" src="img/dot.png" />
+			<span class="joysick-dot" id="holder" ></span>
+		</div>
+
+		<div class="device-list">
+			<ul></ul>
+		</div>
+
+		<div class="menu">
+			<i class="fa fa-sliders" onclick="app.setSettings()"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-plug" onclick="app.init()"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-list" onclick="app.listDevices()"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-play-circle" onclick="app.record()"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-bug" onclick="app.setDebug()"></i>&nbsp;
+
+		</div>
+
+		<div class="settings">
+			<ul>
+				<li class="checkbox " id="i-navigation"  onText="Absolute Naovgation" offText="Relative Navigation">
+					<span onclick="checkbox.toggle(this)">Absolute Naovgation</span><i class="fa fa-toggle-on" onclick="checkbox.toggle(this)"></i>
+					<div class="extra">
+						<ul>
+							<li class="input"><i class="fa fa-arrow-up"></i> <input /></li>
+							<li class="input"><i class="fa fa-arrow-down"></i> <input /></li>
+							<li class="input"><i class="fa fa-arrow-right"></i> <input /></li>
+							<li class="input"><i class="fa fa-arrow-left"></i> <input /></li>
+						</ul>
+					</div>
+				</li>
+				<li class="checkbox " id="i-log"  onText="Show Log" offText="Hide Log">
+					<span onclick="checkbox.toggle(this)">Show Log</span><i class="fa fa-toggle-on" onclick="checkbox.toggle(this)"></i>
+				</li>
+			</ul>
 		</div>
 
 	</body>
@@ -59,4 +77,5 @@
 	<script>
 		app.init();
 	</script>
+	<script src="js/rotor.js"></script>
 </html>
