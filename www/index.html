@@ -55,8 +55,8 @@
 
 		<div class="settings">
 			<ul>
-				<li class="checkbox " id="i-navigation"  onText="Absolute Naovgation" offText="Relative Navigation">
-					<span onclick="checkbox.toggle(this)">Absolute Naovgation</span><i class="fa fa-toggle-on" onclick="checkbox.toggle(this)"></i>
+				<li class="checkbox " id="i-navigation"  onText="Absolute Navigation" offText="Relative Navigation">
+					<span onclick="checkbox.toggle(this)">Absolute Navigation</span><i class="fa fa-toggle-on" onclick="checkbox.toggle(this)"></i>
 					<div class="extra">
 						<ul>
 							<li class="input"><i class="fa fa-arrow-up"></i> <input /></li>
@@ -68,6 +68,9 @@
 				</li>
 				<li class="checkbox " id="i-log"  onText="Show Log" offText="Hide Log">
 					<span onclick="checkbox.toggle(this)">Show Log</span><i class="fa fa-toggle-on" onclick="checkbox.toggle(this)"></i>
+				</li>
+				<li class="checkbox " id="i-accelerometer"  onText="Joystick Only" offText="Accelerometer" function="app.accel">
+					<span onclick="checkbox.toggle(this)">Joystick Only</span><i class="fa fa-toggle-on" onclick="checkbox.toggle(this)"></i>
 				</li>
 			</ul>
 		</div>

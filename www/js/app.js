@@ -1,5 +1,5 @@
-var log= function(s){
-	$(".log").html("<li>"+s+"</li>");
+var log = function(s) {
+	$(".log").html("<li>" + s + "</li>");
 };
 
 var app = {
@@ -23,15 +23,15 @@ var app = {
 		bt.onDeviceConnected = app.startEngagement;
 		bt.onDeviceList = app.showList;
 		bt.onDebugMode = app.setDebug;
-		bt.log = function(s){
-			log("BT "+s);
+		bt.log = function(s) {
+			log("BT " + s);
 		};
 		bt.init();
 	},
 	listDevices : function() {
 		bt.listDevices();
 	},
-	showList:function(list){
+	showList : function(list) {
 		log("list devices");
 		$(".device-list").show();
 		$(".device-list ul").html("");
@@ -48,21 +48,22 @@ var app = {
 		log("Set Device");
 		$(".face").show();
 		$(".device-list").hide();
-		bt.setDevice(mac,app.startEngagement,function(){});
+		bt.setDevice(mac, app.startEngagement, function() {
+		});
 	},
-	startEngagement:function(){
+	startEngagement : function() {
 		log("Found Robert");
 		$(".face").hide();
 		$(".joystick").show();
 	},
-	setSettings:function(){
-		if($(".settings").css("display")=="none"){
+	setSettings : function() {
+		if ($(".settings").css("display") == "none") {
 			$(".settings").fadeIn();
-		}else{
+		} else {
 			$(".settings").fadeOut();
 		}
 	},
-	
+
 	joysickStart : function(event) {
 		//alert("start");
 		app.joysick = {
@@ -85,26 +86,40 @@ var app = {
 		$(".joysick-location").html(Math.round($(".joysick-dot").position().left) + " : " + Math.round($(".joysick-dot").position().top));
 		bt.stop();
 	},
+	accel:function(v){
+		alert("::"+v);
+	},
+	byangle : true,
 	sendBT : function(x, y) {
 		if (Math.abs(x) < 10 && Math.abs(y) < 10) {
 			bt.stop();
 			return;
 		}
-		if (Math.abs(x) > Math.abs(y)) {
-			if (x < 0) {
-				log("left");
-				bt.goLeft();
-			} else if (x > 0) {
-				log("right");
-				bt.goRight();
-			}
+
+		if (app.byangle) {
+			var a = Math.round(Math.atan2(y, x) * 100);
+			
+			log(": " +a);
+			
+			bt.write(a);
+			
 		} else {
-			if (y > 0) {
-				log("back");
-				bt.goBackward();
-			} else if (y < 0) {
-				log("forward");
-				bt.goForward();
+			if (Math.abs(x) > Math.abs(y)) {
+				if (x < 0) {
+					log("left");
+					bt.goLeft();
+				} else if (x > 0) {
+					log("right");
+					bt.goRight();
+				}
+			} else {
+				if (y > 0) {
+					log("back");
+					bt.goBackward();
+				} else if (y < 0) {
+					log("forward");
+					bt.goForward();
+				}
 			}
 		}
 

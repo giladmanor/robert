@@ -45,7 +45,7 @@ var bt = {
 	success : function() {
 	},
 	failure : function(e) {
-		alert("Error" + e);
+		alert("Error " + e);
 	},
 	write : function(c) {
 		if (bt.lastCommand != c) {
