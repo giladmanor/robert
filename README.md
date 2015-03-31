@@ -1,7 +1,11 @@
 
 
-Ionic App Base
+Robebrt: Phonegap (ionic) Bluetooth Arduino robot controller
 =====================
+
+
+Inline-style: 
+![alt text](https://raw.githubusercontent.com/giladmanor/robert/new-GUI/www/img/icon.png "")
 
 A starting project for Ionic that optionally supports using custom SCSS.
 
