@@ -89,14 +89,14 @@ var app = {
 	accel:function(v){
 		alert("::"+v);
 	},
-	byangle : true,
+	byDirection : true,
 	sendBT : function(x, y) {
 		if (Math.abs(x) < 10 && Math.abs(y) < 10) {
 			bt.stop();
 			return;
 		}
 
-		if (app.byangle) {
+		if (!app.byDirection) {
 			var a = Math.round(Math.atan2(y, x) * 100);
 			
 			log(": " +a);
