@@ -11,6 +11,13 @@ These sketches were tested on on Arduino NANO (ATmega328)
 ##Aditional Hardware:
 
 * BlueTooth module
+
+![alt text](https://raw.githubusercontent.com/giladmanor/robert/new-GUI/arduino/JY-MCU-Bluetooth.jpg "")
+
+
 * Gyro/Accelorometer GY521 
+
+![alt text](https://raw.githubusercontent.com/giladmanor/robert/new-GUI/arduino/gy_521.jpg "")
+
 
 ** writting in progress**
