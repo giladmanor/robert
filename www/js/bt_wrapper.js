@@ -4,6 +4,8 @@ var bt = {
 	onDebugMode:function(){},
 	log:function(s){},
 	init : function() {
+		bt.loadSettings();
+		
 		bluetoothSerial.isEnabled(function() {
 			// IS ENABLED
 			bt.log("ENABLED");
@@ -68,5 +70,12 @@ var bt = {
 	stop : function() {
 		bt.write("-");
 	},
-	
+	persist:function(){
+		localStorage.joysick = JSON.stringify(bt.joysick);
+	},
+	loadSettings:function(){
+		if(localStorage.joysick){
+			bt.joysick = JSON.parse(localStorage.joysick);
+		}
+	},
 };

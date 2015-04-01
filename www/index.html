@@ -20,7 +20,9 @@
 		<script src="js/bt_wrapper.js"></script>
 		<script src="js/app.js"></script>
 		<script src="js/checkbox.js"></script>
+		<script src="js/input.js"></script>
 		<script src="js/d3.js"></script>
+		<script src="js/processing.js"></script>
 
 	</head>
 
@@ -41,7 +43,41 @@
 			<div class="joysick-location">
 				--
 			</div>
-			<span class="joysick-dot" id="holder" ></span>
+			<!-- <span class="joysick-dot" id="holder" ></span> -->
+			<div class="processing">
+			<script type="application/processing">
+				void setup() {
+				size(160, 160, P3D);
+				noStroke();
+				}
+
+				void draw() {
+				background(255,0,0);
+				translate(width / 2, height / 2);
+
+				// Orange point light on the right
+				pointLight(150, 100, 0, // Color
+				200, -150, 0); // Position
+
+				// Blue directional light from the left
+				directionalLight(0, 102, 255, // Color
+				1, 0, 0); // The x-, y-, z-axis direction
+
+				// Yellow spotlight from the front
+				spotLight(255, 255, 109, // Color
+				0, 40, 200, // Position
+				0, -0.5, -0.5, // Direction
+				PI / 2, 2); // Angle, concentration
+
+				rotateY(map(mouseX, 0, width, 0, PI));
+				rotateZ(map(-mouseY,0, height, 0, PI));
+				box(90);
+				}
+
+				
+			</script>
+			<canvas width="740" height="660" tabindex="0" id="__processing0"></canvas>
+		</div>
 		</div>
 
 		<div class="device-list">
@@ -53,24 +89,38 @@
 
 		</div>
 
+		
+
 		<div class="settings">
 			<ul>
 				<li class="checkbox " id="i-navigation"  onText="Absolute Navigation" offText="Relative Navigation" variable="app.byDirection">
 					<span onclick="checkbox.toggle(this)">Absolute Navigation</span><i class="fa fa-toggle-on" onclick="checkbox.toggle(this)"></i>
 					<div class="extra">
 						<ul>
-							<li class="input"><i class="fa fa-arrow-up"></i> <input /></li>
-							<li class="input"><i class="fa fa-arrow-down"></i> <input /></li>
-							<li class="input"><i class="fa fa-arrow-right"></i> <input /></li>
-							<li class="input"><i class="fa fa-arrow-left"></i> <input /></li>
+							<li class="input"  variable="bt.joysick.forward">
+								<i class="fa fa-arrow-up"></i>
+								<input value="a" onchange="input.change(this)"/>
+							</li>
+							<li class="input" variable="bt.joysick.backward">
+								<i class="fa fa-arrow-down"></i>
+								<input value="b" onchange="input.change(this)"/>
+							</li>
+							<li class="input" variable="bt.joysick.right">
+								<i class="fa fa-arrow-right"></i>
+								<input value="d" onchange="input.change(this)"/>
+							</li>
+							<li class="input" variable="bt.joysick.left">
+								<i class="fa fa-arrow-left"></i>
+								<input value="c" onchange="input.change(this)"/>
+							</li>
 						</ul>
 					</div>
 				</li>
-				<li class="checkbox " id="i-log"  onText="Show Log" offText="Hide Log">
+				<li class="checkbox " id="i-log"  onText="Show Log" offText="Hide Log" function="app.showLog">
 					<span onclick="checkbox.toggle(this)">Show Log</span><i class="fa fa-toggle-on" onclick="checkbox.toggle(this)"></i>
 				</li>
-				<li class="checkbox " id="i-accelerometer"  onText="Joystick Only" offText="Accelerometer" function="app.accel">
-					<span onclick="checkbox.toggle(this)">Joystick Only</span><i class="fa fa-toggle-on" onclick="checkbox.toggle(this)"></i>
+				<li class="checkbox " id="i-accelerometer"  onText="Joystick" offText="Accelerometer" function="app.accel">
+					<span onclick="checkbox.toggle(this)">Joystick</span><i class="fa fa-toggle-on" onclick="checkbox.toggle(this)"></i>
 				</li>
 			</ul>
 		</div>

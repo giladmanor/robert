@@ -13,6 +13,8 @@ var app = {
 	},
 	init : function() {
 		log("INIT");
+		app.loadSettings();
+		
 		$(".face").show();
 		//localStorage.removeItem("robert_mac");
 		document.addEventListener('deviceready', this.onDeviceReady, false);
@@ -59,8 +61,13 @@ var app = {
 	setSettings : function() {
 		if ($(".settings").css("display") == "none") {
 			$(".settings").fadeIn();
+			checkbox.set($("#i-navigation"),localStorage.byDirection);
+			checkbox.set($("#i-log"),localStorage.log);
+			checkbox.set($("#i-accelerometer"),!localStorage.accelorometer);
 		} else {
 			$(".settings").fadeOut();
+			bt.persist();
+			app.persist();
 		}
 	},
 
@@ -87,7 +94,21 @@ var app = {
 		bt.stop();
 	},
 	accel:function(v){
-		alert("::"+v);
+		if(v){
+			$(".joystick").show();
+		}else{
+			$(".joystick").hide();
+		}
+		localStorage.accelorometer = !v;
+	},
+	showLog:function(v){
+		if(v){
+			$(".log").show();
+			
+		}else{
+			$(".log").hide();
+		}
+		localStorage.log = v;
 	},
 	byDirection : true,
 	sendBT : function(x, y) {
@@ -123,5 +144,15 @@ var app = {
 			}
 		}
 
+	},
+	persist:function(){
+		localStorage.byDirection = app.byDirection;
+	},
+	loadSettings:function(){
+		if(localStorage.byDirection){
+			app.byDirection = localStorage.byDirection;
+		}
+		app.showLog(localStorage.log);
+		app.accel(!localStorage.accelorometer);
 	},
 };
