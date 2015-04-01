@@ -1,6 +1,6 @@
 
 
-Robebrt: 
+Robebrt the Robot: 
 =====================
 ##Phonegap (ionic) Bluetooth Arduino robot controller
 
