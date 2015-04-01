@@ -5,7 +5,7 @@ This repository contains sketches for the Robert Arduino controller.
 
 These sketches were tested on on Arduino NANO (ATmega328)
 
-(https://raw.githubusercontent.com/giladmanor/robert/new-GUI/arduino/ARDUINO_NANO_03.png "")
+![alt text](https://raw.githubusercontent.com/giladmanor/robert/new-GUI/arduino/ARDUINO_NANO_03.png "")
 
 
 ##Aditional Hardware:
