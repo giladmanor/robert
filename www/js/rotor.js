@@ -147,13 +147,13 @@
 			});
 
 			var t0 = Date.now(), noReverseArcs = outerArcs.filter(function(d) {
-				return !('reverse' in d)
+				return !('reverse' in d);
 			}), t = "translate(" + center.x + "," + center.y + ") ";
 
 			function reverseArcTransition(arc, rev) {
 
 				arc.transition().duration(function(d) {
-					return d.duration
+					return d.duration;
 				}).ease('linear').attrTween("transform", function(d) {
 					return ( rev ? d3.interpolate(t + "rotate(" + (d.reverse ? 360 : -360) + ")", t + "rotate(0)") : d3.interpolate(t + "rotate(0)", t + "rotate(" + (d.reverse ? 360 : -360) + ")"));
 				}).each("end", function() {
@@ -163,7 +163,7 @@
 
 
 			outerArcs.filter(function(d) {
-				return ('reverse' in d)
+				return ('reverse' in d);
 			}).call(reverseArcTransition, false);
 
 			d3.timer(function() {

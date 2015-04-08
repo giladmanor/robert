@@ -23,6 +23,8 @@
 		<script src="js/input.js"></script>
 		<script src="js/d3.js"></script>
 		<script src="js/processing.js"></script>
+		<script src="js/accel.js"></script>
+		
 
 	</head>
 
@@ -45,39 +47,37 @@
 			</div>
 			<!-- <span class="joysick-dot" id="holder" ></span> -->
 			<div class="processing">
-			<script type="application/processing">
-				void setup() {
-				size(160, 160, P3D);
-				noStroke();
-				}
+				<script type="application/processing">
+					void setup() {
+					size(160, 160, P3D);
+					noStroke();
+					}
 
-				void draw() {
-				background(255,0,0);
-				translate(width / 2, height / 2);
+					void draw() {
+					background(255,66,53);
+					translate(width / 2, height / 2);
+					pointLight(150, 100, 0, // Color
+					200, -150, 0); // Position
+					
+					// Orange point light on the right
 
-				// Orange point light on the right
-				pointLight(150, 100, 0, // Color
-				200, -150, 0); // Position
+					// Blue directional light from the left
+					directionalLight(0, 102, 255, // Color
+					1, 0, 0); // The x-, y-, z-axis direction
 
-				// Blue directional light from the left
-				directionalLight(0, 102, 255, // Color
-				1, 0, 0); // The x-, y-, z-axis direction
+					// Yellow spotlight from the front
+					spotLight(255, 255, 109, // Color
+					0, 40, 200, // Position
+					0, -0.5, -0.5, // Direction
+					PI / 2, 2); // Angle, concentration
+					rotateY(map(mouseX, 0, width, 0, PI));
+					rotateZ(map(-mouseY,0, height, 0, PI));
+					box(70);
+					}
 
-				// Yellow spotlight from the front
-				spotLight(255, 255, 109, // Color
-				0, 40, 200, // Position
-				0, -0.5, -0.5, // Direction
-				PI / 2, 2); // Angle, concentration
-
-				rotateY(map(mouseX, 0, width, 0, PI));
-				rotateZ(map(-mouseY,0, height, 0, PI));
-				box(90);
-				}
-
-				
-			</script>
-			<canvas width="740" height="660" tabindex="0" id="__processing0"></canvas>
-		</div>
+				</script>
+				<canvas width="740" height="660" tabindex="0" id="__processing0"></canvas>
+			</div>
 		</div>
 
 		<div class="device-list">
@@ -89,11 +89,9 @@
 
 		</div>
 
-		
-
 		<div class="settings">
 			<ul>
-				<li class="checkbox " id="i-navigation"  onText="Absolute Navigation" offText="Relative Navigation" variable="app.byDirection">
+				<li class="checkbox " id="i-navigation"  onText="Absolute Navigation" offText="Relative Navigation" variable="localStorage.byDirection">
 					<span onclick="checkbox.toggle(this)">Absolute Navigation</span><i class="fa fa-toggle-on" onclick="checkbox.toggle(this)"></i>
 					<div class="extra">
 						<ul>
@@ -116,10 +114,10 @@
 						</ul>
 					</div>
 				</li>
-				<li class="checkbox " id="i-log"  onText="Show Log" offText="Hide Log" function="app.showLog">
+				<li class="checkbox " id="i-log"  onText="Show Log" offText="Hide Log" function="localStorage.showLog">
 					<span onclick="checkbox.toggle(this)">Show Log</span><i class="fa fa-toggle-on" onclick="checkbox.toggle(this)"></i>
 				</li>
-				<li class="checkbox " id="i-accelerometer"  onText="Joystick" offText="Accelerometer" function="app.accel">
+				<li class="checkbox " id="i-accelerometer"  onText="Joystick" offText="Accelerometer" function="localStorage.accel">
 					<span onclick="checkbox.toggle(this)">Joystick</span><i class="fa fa-toggle-on" onclick="checkbox.toggle(this)"></i>
 				</li>
 			</ul>

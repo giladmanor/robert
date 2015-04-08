@@ -37,7 +37,8 @@ var checkbox = {
 		checkbox.render(element);
 	},
 	set : function(element,val) {
-		if(val){
+		
+		if(val==="true" || val){
 			checkbox.setOn(element);
 		}else{
 			checkbox.setOff(element);

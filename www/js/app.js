@@ -1,5 +1,10 @@
+var lastLog = "";
 var log = function(s) {
-	$(".log").html("<li>" + s + "</li>");
+	if (lastLog != s) {
+		$(".log").prepend("<li>" + s + "</li>");
+		lastLog = s;
+	}
+
 };
 
 var app = {
@@ -13,8 +18,14 @@ var app = {
 	},
 	init : function() {
 		log("INIT");
-		app.loadSettings();
-		
+
+		app.showLog(localStorage.log === "true");
+		if (localStorage.byDirection === "true") {
+			accel.stop();
+		} else {
+			accel.start();
+		}
+
 		$(".face").show();
 		//localStorage.removeItem("robert_mac");
 		document.addEventListener('deviceready', this.onDeviceReady, false);
@@ -61,13 +72,14 @@ var app = {
 	setSettings : function() {
 		if ($(".settings").css("display") == "none") {
 			$(".settings").fadeIn();
-			checkbox.set($("#i-navigation"),localStorage.byDirection);
-			checkbox.set($("#i-log"),localStorage.log);
-			checkbox.set($("#i-accelerometer"),!localStorage.accelorometer);
+			log("set byDirection -- "+ (localStorage.byDirection==="true"));
+			checkbox.set($("#i-navigation"), localStorage.byDirection==="true");
+			checkbox.set($("#i-log"), localStorage.log==="true");
+			checkbox.set($("#i-accelerometer"), localStorage.accelorometer!="true");
 		} else {
 			$(".settings").fadeOut();
-			bt.persist();
-			app.persist();
+			log("byDirection -- "+ (localStorage.byDirection==="true"));
+			app.init();
 		}
 	},
 
@@ -93,37 +105,37 @@ var app = {
 		$(".joysick-location").html(Math.round($(".joysick-dot").position().left) + " : " + Math.round($(".joysick-dot").position().top));
 		bt.stop();
 	},
-	accel:function(v){
-		if(v){
-			$(".joystick").show();
-		}else{
-			$(".joystick").hide();
-		}
+	accel : function(v) {
 		localStorage.accelorometer = !v;
+		if (v) {
+			accel.start();
+		} else {
+			accel.stop();
+		}
+
 	},
-	showLog:function(v){
-		if(v){
+	showLog : function(v) {
+		if (v) {
 			$(".log").show();
-			
-		}else{
+
+		} else {
 			$(".log").hide();
 		}
 		localStorage.log = v;
 	},
-	byDirection : true,
 	sendBT : function(x, y) {
 		if (Math.abs(x) < 10 && Math.abs(y) < 10) {
 			bt.stop();
 			return;
 		}
 
-		if (!app.byDirection) {
+		if (!localStorage.byDirection==="true") {
 			var a = Math.round(Math.atan2(y, x) * 100);
-			
-			log(": " +a);
-			
+
+			log(": " + a);
+
 			bt.write(a);
-			
+
 		} else {
 			if (Math.abs(x) > Math.abs(y)) {
 				if (x < 0) {
@@ -144,15 +156,5 @@ var app = {
 			}
 		}
 
-	},
-	persist:function(){
-		localStorage.byDirection = app.byDirection;
-	},
-	loadSettings:function(){
-		if(localStorage.byDirection){
-			app.byDirection = localStorage.byDirection;
-		}
-		app.showLog(localStorage.log);
-		app.accel(!localStorage.accelorometer);
 	},
 };
